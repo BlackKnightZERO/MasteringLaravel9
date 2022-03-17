@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Billing>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CategoryRmb>
  */
-class BillingFactory extends Factory
+class CategoryRmbFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,9 @@ class BillingFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->word(),
+            'slug' => $this->faker->slug(),
+            'created_at' => now()
         ];
     }
 }

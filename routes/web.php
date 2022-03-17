@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryRmbController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,18 +21,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
 Route::middleware(['auth'])->group(function () {
+    Route::view('/', 'dashboard')->name('dashboard');                                                       //  view-load
+    Route::view('/dashboard', 'dashboard')->name('dashboard');                                                       //  view-load
+    Route::view('/profile', 'backend.profile.index')->name('profile.index');                                // load-auth-data
+    Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');            // request-only-request-class
+    
+    Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');                     // fractional-value-as-int
+    Route::get('/checkout/{billing_id}', [BillingController::class, 'checkout'])->name('billing.checkout'); 
 
-    Route::view('/', 'dashboard')->name('dashboard');
-    Route::view('/profile', 'profile')->name('profile.index');
-    Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::resource('/category-rmb', CategoryRmbController::class)->name('*', 'category-rmb');
+    Route::resource('/product', ProductController::class)->name('*', 'product');
 
-    Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
-    Route::get('/checkout/{billing_id}', [BillingController::class, 'checkout'])->name('billing.checkout');
 });
 
 

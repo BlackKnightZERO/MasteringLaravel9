@@ -5628,6 +5628,33 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/additional.js":
+/*!************************************!*\
+  !*** ./resources/js/additional.js ***!
+  \************************************/
+/***/ (() => {
+
+function slugify(str) {
+  str = str.replace(/^\s+|\s+$/g, ''); // Make the string lowercase
+
+  str = str.toLowerCase(); // Remove accents, swap ñ for n, etc
+
+  var from = "ÁÄÂÀÃÅČÇĆĎÉĚËÈÊẼĔȆÍÌÎÏŇÑÓÖÒÔÕØŘŔŠŤÚŮÜÙÛÝŸŽáäâàãåčçćďéěëèêẽĕȇíìîïňñóöòôõøðřŕšťúůüùûýÿžþÞĐđßÆa·/_,:;";
+  var to = "AAAAAACCCDEEEEEEEEIIIINNOOOOOORRSTUUUUUYYZaaaaaacccdeeeeeeeeiiiinnooooooorrstuuuuuyyzbBDdBAa------";
+
+  for (var i = 0, l = from.length; i < l; i++) {
+    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+  } // Remove invalid chars
+
+
+  str = str.replace(/[^a-z0-9 -]/g, '') // Collapse whitespace and replace by -
+  .replace(/\s+/g, '-') // Collapse dashes
+  .replace(/-+/g, '-');
+  return str;
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -23269,6 +23296,7 @@ process.umask = function() { return 0; };
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
 /******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/additional.js")))
 /******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	

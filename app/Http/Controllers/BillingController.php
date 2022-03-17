@@ -10,11 +10,11 @@ class BillingController extends Controller
 {
     public function index() {
         $billings = Billing::all();
-        return view('billing.index', compact('billings'));
+        return view('backend.billing.index', compact('billings'));
     }
 
     public function checkout($billing_id) {
         $plan = Billing::findOrFail($billing_id);
-        return view('billing.checkout', compact('plan'));
+        return view('backend.billing.checkout', compact('plan'));
     }
 }
