@@ -17,7 +17,9 @@ class FileUploadService {
     }
 
     public function destroy($path){
-        Storage::delete('public/'.$path);
+        if (Storage::exists('public/'.$path)) {
+            Storage::delete('public/'.$path);
+        }
     }
 
 

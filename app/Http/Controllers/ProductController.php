@@ -120,6 +120,8 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
 
+        // dd($product->storages->isNotEmpty());
+
         $oldStorages = $product->storages;
         $oldStoragesPath = ($oldStorages->isNotEmpty()) ? $oldStorages[0]->path : null;
 
@@ -127,7 +129,16 @@ class ProductController extends Controller
             $request->validate(['file' => 'file|mimes:jpg,jpeg,png|max:5120']);        
             $path = $this->fileUploadService->upload('Product', $request->file('file'));
             $this->fileUploadService->destroy($oldStoragesPath);
-            $product->storages()->update(['path' => $path]);
+            if($product->storages->isNotEmpty()){
+                $product->storages()->update(['path' => $path]);
+            } else {
+                Storage::create([
+                    'storageable_id' => $product->id,
+                    'storageable_type' => 'App\Models\Product',
+                    'file_type' => $request->file('file')->extension(),
+                    'path'  => $path
+                ]);
+            }
         }
 
         $product->update($request->validated());
