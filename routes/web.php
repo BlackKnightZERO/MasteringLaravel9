@@ -5,6 +5,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryRmbController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NewsfeedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/category-rmb', CategoryRmbController::class)->name('*', 'category-rmb');
     Route::resource('/product', ProductController::class)->name('*', 'product');
+
+    Route::get('/newsfeed', NewsfeedController::class)->name('newsfeed');
 
 });
 

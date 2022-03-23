@@ -41,6 +41,11 @@ class DatabaseSeeder extends Seeder
         //         'tag_id' => rand(1,15)
         //     ]);
         // }
+
+        // $this->call([
+        //     PostSeeder::class,
+        //     CommentSeeder::class,
+        // ]);
     
     }
 }

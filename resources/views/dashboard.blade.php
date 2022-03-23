@@ -34,6 +34,13 @@
                                 <small class="font-semibold text-indigo-800">Pivot Table</small>
                             </div>
                         </a>
+                        <a href="{{ route('newsfeed') }}">
+                            <div class="border-solid border-2 border-indigo-500 rounded p-4 shadow-lg shadow-indigo-400/50">
+                                <p class="font-bold text-indigo-800">Relationships</p>
+                                <hr>
+                                <small class="font-semibold text-indigo-800">Post Comments</small>
+                            </div>
+                        </a>
                         
                         
                 </div>
