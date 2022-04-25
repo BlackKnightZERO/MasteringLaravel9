@@ -6,6 +6,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryRmbController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsfeedController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/product', ProductController::class)->name('*', 'product');
 
     Route::get('/newsfeed', NewsfeedController::class)->name('newsfeed');
-
+    
+    Route::resource('/comment', CommentController::class)->name('*', 'comment');
+    
+    Route::resource('/post', PostController::class)->name('*', 'post');
 });
 
 

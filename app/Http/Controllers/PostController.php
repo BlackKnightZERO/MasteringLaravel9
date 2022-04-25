@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -33,9 +35,16 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+
+        $validated = $request->safe()->except(['slug']);
+        $validatedOnly = $request->safe()->only(['slug']);
+        $validated['slug'] = $validatedOnly['slug']->value;
+        
+        Post::create($validated);
+
+        return redirect()->route('newsfeed')->with('message', 'Saved successfully');
     }
 
     /**
