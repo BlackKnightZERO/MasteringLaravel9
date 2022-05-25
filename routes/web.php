@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsfeedController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CountryController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::view('/', 'dashboard')->name('dashboard');                                                       //  view-load
-    Route::view('/dashboard', 'dashboard')->name('dashboard');                                                       //  view-load
+    Route::view('/dashboard', 'dashboard')->name('dashboard');                                              //  view-load
     Route::view('/profile', 'backend.profile.index')->name('profile.index');                                // load-auth-data
     Route::put('/profile-update', [ProfileController::class, 'update'])->name('profile.update');            // request-only-request-class
     
@@ -41,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/comment', CommentController::class)->name('*', 'comment');
     
     Route::resource('/post', PostController::class)->name('*', 'post');
+
+    Route::resource('/country-city-shop', CountryController::class)->name('*', 'country-city-shop');
+
 });
 
 

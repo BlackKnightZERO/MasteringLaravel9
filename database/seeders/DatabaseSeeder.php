@@ -46,6 +46,12 @@ class DatabaseSeeder extends Seeder
         //     PostSeeder::class,
         //     CommentSeeder::class,
         // ]);
+
+        $this->call([
+            CountrySeeder::class,
+            CitySeeder::class,
+            ShopSeeder::class,
+        ]);
     
     }
 }
