@@ -26,4 +26,8 @@ class Product extends Model
     public function storages() {
         return $this->morphMany(Storage::class, 'storageable');
     }
+    
+    public function storage() {
+        return $this->morphOne(Storage::class, 'storageable');
+    }
 }

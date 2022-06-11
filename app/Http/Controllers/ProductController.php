@@ -107,7 +107,7 @@ class ProductController extends Controller
 
         $storagePath = ($productStorages->isNotEmpty()) ? $productStorages[0]->path : null;
         
-        return view('backend.product.edit', compact('product', 'categories', 'tags', 'productTags', 'productCategory', 'storagePath'));
+        return view('backend.product.edit', compact('product', 'categories', 'tags', 'productTags', 'productCategory', 'productStorages', 'storagePath'));
     }
 
     /**
@@ -121,6 +121,8 @@ class ProductController extends Controller
     {
 
         // dd($product->storages->isNotEmpty());
+
+        // dd($product->storage);
 
         $oldStorages = $product->storages;
         $oldStoragesPath = ($oldStorages->isNotEmpty()) ? $oldStorages[0]->path : null;

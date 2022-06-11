@@ -26,6 +26,13 @@
                                 <small class="font-semibold text-indigo-800">RouteModelBinding</small>
                             </div>
                         </a>
+                        <a href="{{ route('news.letter') }}">
+                            <div class="border-solid border-2 border-indigo-500 rounded p-4 shadow-lg shadow-indigo-400/50">
+                                <p class="font-bold text-indigo-800">Event Listener</p>
+                                <hr>
+                                <small class="font-semibold text-indigo-800">Newsletter Subscribe</small>
+                            </div>
+                        </a>
                         
                     </div>
 
@@ -35,7 +42,7 @@
                         
                         <a href="{{ route('product.index') }}">
                             <div class="h-28 border-solid border-2 border-red-500 rounded p-4 shadow-lg shadow-red-400/50">
-                                <p class="font-bold text-red-800">BelongsToMany-Pivot</p>
+                                <p class="font-bold text-red-800">Polimorphic & Pivot</p>
                                 <hr>
                                 <small class="font-semibold text-red-800">Product Category Tags</small>
                             </div>

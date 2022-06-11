@@ -10,6 +10,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\NewsLetterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,9 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/post', PostController::class)->name('*', 'post');
 
     Route::resource('/country-city-shop', CountryController::class)->name('*', 'country-city-shop');
+
+    Route::get('/news-letter', [ NewsLetterController::class, 'index'])->name('news.letter');
+    Route::post('/news-letter-subscribe', [ NewsLetterController::class, 'subscribe'])->name('news.letter.subscribe');
 
 });
 
