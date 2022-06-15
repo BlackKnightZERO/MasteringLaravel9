@@ -779,6 +779,12 @@ select {
 .h-4 {
   height: 1rem;
 }
+.h-0\.5 {
+  height: 0.125rem;
+}
+.h-0 {
+  height: 0px;
+}
 .h-auto {
   height: auto;
 }

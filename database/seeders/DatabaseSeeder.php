@@ -13,6 +13,7 @@ use App\Models\CategoryRmb;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
+use App\Models\JobListing;
 
 
 class DatabaseSeeder extends Seeder
@@ -47,11 +48,52 @@ class DatabaseSeeder extends Seeder
         //     CommentSeeder::class,
         // ]);
 
-        $this->call([
-            CountrySeeder::class,
-            CitySeeder::class,
-            ShopSeeder::class,
-        ]);
+        // $this->call([
+        //     CountrySeeder::class,
+        //     CitySeeder::class,
+        //     ShopSeeder::class,
+        // ]);
+
+        $tags = Tag::all();
+
+        if( $tags->count() == 0 ) {
+            $tags = Tag::factory(10)->create();
+        }
+
+        $users = User::all();
+
+        //3 levels deep
+        if( $users->count() == 0 ) {
+            User::factory(20)->create()->each(function($user) use ($tags) {
+                JobListing::factory(rand(1, 5))->create([
+                    'user_id' => $user->id
+                ])->each(function($jobListing) use ($tags) {
+                    $jobListing->tags()->attach($tags->random(3));
+                });
+            });
+        } else {
+            //2 levels deep
+            // WAY - 2 ::
+            JobListing::factory()
+                        ->count(25)
+                        ->for($users->random())
+                        ->create()
+                        ->each(function($jobListing) use ($tags) {
+                            $jobListing->tags()->attach($tags->random(3));
+                        });
+
+
+            //2 levels deep
+            // WAY - 1 ::
+            JobListing::factory(25)->create([
+                'user_id' => $users->random()->id
+            ])->each(function($jobListing) use ($tags) {
+                $jobListing->tags()->attach($tags->random(3));
+            });
+
+            
+        }
+
     
     }
 }
